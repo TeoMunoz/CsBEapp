@@ -12,8 +12,9 @@ function getInfo() {
     for( i = 0; i < people.length; i++) {
         if(username == people[i].username && password == people[i].password) {
             console.log(username + " is logged in!")
+            window.location = "home.html";
         }else {
-            console.log("incorrect username or password")
+            window.alert("incorrect username or password")
         }
     }
 }

@@ -6,7 +6,6 @@
 }
 header{
     background-color:#C8B6E3;
-	
 }
 #header-logo{
     width:64px;
@@ -62,11 +61,6 @@ header{
     color: rgb(255, 255, 255);
   }
 
-  
-
-
-
-
   .login-page {
     width: 360px;
     padding: 8% 0 0;
@@ -113,3 +107,30 @@ header{
     max-width: 300px;
     margin: 0 auto;
   }
+
+  .container-home{
+    width: 90%;
+    max-width: 1200px;
+    overflow: hidden;
+    margin: auto;
+    padding: 60px 0;
+}
+
+.head-home{
+  text-align: center;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+}
+
+.home-img {
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
