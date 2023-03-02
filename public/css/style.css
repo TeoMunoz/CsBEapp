@@ -108,7 +108,7 @@ header{
     margin: 0 auto;
   }
 
-  .container-home{
+  .container-style{
     width: 90%;
     max-width: 1200px;
     overflow: hidden;
@@ -116,7 +116,7 @@ header{
     padding: 60px 0;
 }
 
-.head-home{
+.head-style{
   text-align: center;
   padding: 0;
   height: 100%;
@@ -133,4 +133,8 @@ header{
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
+}
+
+.avatar {
+  border-radius: 50%;
 }
