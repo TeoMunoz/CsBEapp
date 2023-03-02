@@ -1,9 +1,9 @@
 //Entry Class: Represent each entry in the parking lot
 class Entry{
-    constructor(owner,car,licensePlate,entryDate,exitDate){
-        this.owner = owner;
-        this.car = car;
-        this.licensePlate = licensePlate;
+    constructor(name,lastname,room,entryDate,exitDate){
+        this.name = name;
+        this.lastname = lastname;
+        this.room = room;
         this.entryDate = entryDate;
         this.exitDate = exitDate;
     }
@@ -18,9 +18,9 @@ class UI{
     static addEntryToTable(entry){
         const tableBody=document.querySelector('#tableBody');
         const row = document.createElement('tr');
-        row.innerHTML = `   <td>${entry.owner}</td>
-                            <td>${entry.car}</td>
-                            <td>${entry.licensePlate}</td>
+        row.innerHTML = `   <td>${entry.name}</td>
+                            <td>${entry.lastname}</td>
+                            <td>${entry.room}</td>
                             <td>${entry.entryDate}</td>
                             <td>${entry.exitDate}</td>
                             <td><button class="btn btn-danger delete">X</button></td>
@@ -48,13 +48,13 @@ class UI{
         setTimeout(() => document.querySelector('.alert').remove(),3000);
     }
     static validateInputs(){
-        const owner = document.querySelector('#owner').value;
-        const car = document.querySelector('#car').value;
-        const licensePlate = document.querySelector('#licensePlate').value;
+        const name = document.querySelector('#name').value;
+        const lastname = document.querySelector('#lastname').value;
+        const room = document.querySelector('#room').value;
         const entryDate = document.querySelector('#entryDate').value;
         const exitDate = document.querySelector('#exitDate').value;
-        var licensePlateRegex = /^(?:[A-Z]{2}-\d{2}-\d{2})|(?:\d{2}-[A-Z]{2}-\d{2})|(?:\d{2}-\d{2}-[A-Z]{2})$/;
-        if(owner === '' || car === '' || licensePlate === '' || entryDate === '' || exitDate === ''){
+        var roomRegex = /^(?:[A-Z]{2}-\d{2}-\d{2})|(?:\d{2}-[A-Z]{2}-\d{2})|(?:\d{2}-\d{2}-[A-Z]{2})$/;
+        if(name === '' || lastname === '' || room === '' || entryDate === '' || exitDate === ''){
             UI.showAlert('All fields must me filled!','danger');
             return false;
         }
@@ -62,7 +62,7 @@ class UI{
             UI.showAlert('Exit Date cannot be lower than Entry Date','danger');
             return false;
         }
-        if(!licensePlateRegex.test(licensePlate)){
+        if(!roomRegex.test(room)){
             UI.showAlert('License Plate must be like NN-NN-LL, NN-LL-NN, LL-NN-NN','danger');
             return false;
         }
@@ -86,10 +86,10 @@ class Store{
         entries.push(entry);
         localStorage.setItem('entries', JSON.stringify(entries));
     }
-    static removeEntries(licensePlate){
+    static removeEntries(room){
         const entries = Store.getEntries();
         entries.forEach((entry,index) => {
-            if(entry.licensePlate === licensePlate){
+            if(entry.room === room){
                 entries.splice(index, 1);
             }
         });
@@ -103,23 +103,23 @@ class Store{
         e.preventDefault();
         
         //Declare Variables
-        const owner = document.querySelector('#owner').value;
-        const car = document.querySelector('#car').value;
-        const licensePlate = document.querySelector('#licensePlate').value;
+        const name = document.querySelector('#name').value;
+        const lastname = document.querySelector('#lastname').value;
+        const room = document.querySelector('#room').value;
         const entryDate = document.querySelector('#entryDate').value;
         const exitDate = document.querySelector('#exitDate').value;
         if(!UI.validateInputs()){
             return;
         }
         //Instatiate Entry
-        const entry = new Entry(owner, car, licensePlate, entryDate, exitDate);
+        const entry = new Entry(name, lastname, room, entryDate, exitDate);
         //Add the entry do de UI table
         UI.addEntryToTable(entry);
         Store.addEntries(entry);
         //Delete content of input's
         UI.clearInput();
 
-        UI.showAlert('Car successfully added to the parking lot','success');
+        UI.showAlert('Room successfully added to the booking lot','success');
 
     });
 //Event Remove
@@ -127,11 +127,11 @@ class Store{
         //Call to UI function that removes entry from the table
         UI.deleteEntry(e.target);
         //Get license plate to use as unique element of an entry
-        var licensePlate = e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent;
+        var room = e.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.textContent;
         //Call to Store function to remove entry from the local storage
-        Store.removeEntries(licensePlate);
+        Store.removeEntries(room);
         //Show alert that entry was removed
-        UI.showAlert('Car successfully removed from the parking lot list','success');
+        UI.showAlert('Room successfully removed from the booking lot list','success');
     })
 
 //Event Search
