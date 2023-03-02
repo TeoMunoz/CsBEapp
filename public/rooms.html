@@ -35,22 +35,22 @@
         </div>
         <div class="row">
             <div class="col-6">
-                <label for="entryDate">Entry Date:</label>
-                <input type="date" class="form-control rounded-0 shadow-sm" id="entryDate">
+                <label for="entryDateRoom">Entry Date:</label>
+                <input type="date" class="form-control rounded-0 shadow-sm" id="entryDateRoom">
             </div>
             <div class="col-6">
-                <label for="exitDate">Exit Date:</label>
-                <input type="date" class="form-control rounded-0 shadow-sm" id="exitDate">
+                <label for="exitDateRoom">Exit Date:</label>
+                <input type="date" class="form-control rounded-0 shadow-sm" id="exitDateRoom">
             </div>
         </div>
-        <button type="submit" style="color:#000;" class="btn mx-auto d-block mt-5 rounded-0 shadow" id="btnOne">Add Car</button>
+        <button type="submit" style="color:#000;" class="btn mx-auto d-block mt-5 rounded-0 shadow" id="btnOne">Add Room</button>
     </form>
 </div>
 <div class="table-container mt-5 mb-5 w-75 mx-auto" >
         <h5 class="text-center mb-3">List of booked rooms</h5>
-        <input type="text" class="w-100 mb-3" id="searchInput" placeholder="Search...">
-        <table class="table table-striped shadow " id="parkingTable">
-                <thead class="text-black" id="tableHead">
+        <input type="text" class="w-100 mb-3" id="searchInputRoom" placeholder="Search...">
+        <table class="table table-striped shadow " id="bookingTable">
+                <thead class="text-black" id="tableHeadRoom">
                   <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Lastname</th>
@@ -60,7 +60,7 @@
                     <th scope="col">Actions</th>
                   </tr>
                 </thead>
-                <tbody id="tableBody">
+                <tbody id="tableBodyRooms">
                  
                 </tbody>
               </table>

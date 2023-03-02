@@ -1,31 +1,31 @@
 //Entry Class: Represent each entry in the parking lot
 class Entry{
-    constructor(name,lastname,room,entryDate,exitDate){
+    constructor(name,lastname,room,entryDateRoom,exitDateRoom){
         this.name = name;
         this.lastname = lastname;
         this.room = room;
-        this.entryDate = entryDate;
-        this.exitDate = exitDate;
+        this.entryDateRoom = entryDateRoom;
+        this.exitDateRoom = exitDateRoom;
     }
 }
 //UI Class: Handle User Interface Tasks
 class UI{
     static displayEntries(){
    
-        const entries = Store.getEntries();
-        entries.forEach((entry) => UI.addEntryToTable(entry));
+        const entries = Store.getEntriesRoom();
+        entries.forEach((entry) => UI.addEntryToTableRoom(entry));
     }
-    static addEntryToTable(entry){
-        const tableBody=document.querySelector('#tableBody');
+    static addEntryToTableRoom(entry){
+        const tableBodyRooms=document.querySelector('#tableBodyRooms');
         const row = document.createElement('tr');
         row.innerHTML = `   <td>${entry.name}</td>
                             <td>${entry.lastname}</td>
                             <td>${entry.room}</td>
-                            <td>${entry.entryDate}</td>
-                            <td>${entry.exitDate}</td>
+                            <td>${entry.entryDateRoom}</td>
+                            <td>${entry.exitDateRoom}</td>
                             <td><button class="btn btn-danger delete">X</button></td>
                         `;
-        tableBody.appendChild(row);
+        tableBodyRooms.appendChild(row);
     }
     static clearInput(){
         //Selects all the inputs
@@ -51,14 +51,14 @@ class UI{
         const name = document.querySelector('#name').value;
         const lastname = document.querySelector('#lastname').value;
         const room = document.querySelector('#room').value;
-        const entryDate = document.querySelector('#entryDate').value;
-        const exitDate = document.querySelector('#exitDate').value;
+        const entryDateRoom = document.querySelector('#entryDateRoom').value;
+        const exitDateRoom = document.querySelector('#exitDateRoom').value;
         var roomRegex = /^(?:[A-Z]{2}-\d{2}-\d{2})|(?:\d{2}-[A-Z]{2}-\d{2})|(?:\d{2}-\d{2}-[A-Z]{2})$/;
-        if(name === '' || lastname === '' || room === '' || entryDate === '' || exitDate === ''){
+        if(name === '' || lastname === '' || room === '' || entryDateRoom === '' || exitDateRoom === ''){
             UI.showAlert('All fields must me filled!','danger');
             return false;
         }
-        if(exitDate < entryDate){
+        if(exitDateRoom < entryDateRoom){
             UI.showAlert('Exit Date cannot be lower than Entry Date','danger');
             return false;
         }
@@ -71,7 +71,7 @@ class UI{
 }
 //Store Class: Handle Local Storage
 class Store{
-    static getEntries(){
+    static getEntriesRoom(){
         let entries;
         if(localStorage.getItem('entries') === null){
             entries = [];
@@ -81,13 +81,13 @@ class Store{
         }
         return entries;
     }
-    static addEntries(entry){
-        const entries = Store.getEntries();
+    static addEntriesRoom(entry){
+        const entries = Store.getEntriesRoom();
         entries.push(entry);
         localStorage.setItem('entries', JSON.stringify(entries));
     }
     static removeEntries(room){
-        const entries = Store.getEntries();
+        const entries = Store.getEntriesRoom();
         entries.forEach((entry,index) => {
             if(entry.room === room){
                 entries.splice(index, 1);
@@ -106,16 +106,16 @@ class Store{
         const name = document.querySelector('#name').value;
         const lastname = document.querySelector('#lastname').value;
         const room = document.querySelector('#room').value;
-        const entryDate = document.querySelector('#entryDate').value;
-        const exitDate = document.querySelector('#exitDate').value;
+        const entryDateRoom = document.querySelector('#entryDateRoom').value;
+        const exitDateRoom = document.querySelector('#exitDateRoom').value;
         if(!UI.validateInputs()){
             return;
         }
         //Instatiate Entry
-        const entry = new Entry(name, lastname, room, entryDate, exitDate);
+        const entry = new Entry(name, lastname, room, entryDateRoom, exitDateRoom);
         //Add the entry do de UI table
-        UI.addEntryToTable(entry);
-        Store.addEntries(entry);
+        UI.addEntryToTableRoom(entry);
+        Store.addEntriesRoom(entry);
         //Delete content of input's
         UI.clearInput();
 
@@ -123,7 +123,7 @@ class Store{
 
     });
 //Event Remove
-    document.querySelector('#tableBody').addEventListener('click',(e)=>{
+    document.querySelector('#tableBodyRooms').addEventListener('click',(e)=>{
         //Call to UI function that removes entry from the table
         UI.deleteEntry(e.target);
         //Get license plate to use as unique element of an entry
@@ -135,11 +135,11 @@ class Store{
     })
 
 //Event Search
-    document.querySelector('#searchInput').addEventListener('keyup', function searchTable(){
+    document.querySelector('#searchInputRoom').addEventListener('keyup', function searchTable(){
         //Get value of the input search
-        const searchValue = document.querySelector('#searchInput').value.toUpperCase();
+        const searchValue = document.querySelector('#searchInputRoom').value.toUpperCase();
         //Get all lines of table body
-        const tableLine = (document.querySelector('#tableBody')).querySelectorAll('tr');
+        const tableLine = (document.querySelector('#tableBodyRooms')).querySelectorAll('tr');
         //for loop #1 (used to pass all the lines)
         for(let i = 0; i < tableLine.length; i++){
             var count = 0;
