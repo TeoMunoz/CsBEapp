@@ -1,3 +1,28 @@
+document.getElementById('entryForm').addEventListener('submit', function(e) {
+
+    e.preventDefault();
+
+    let entryForm = new FormData(document.getElementById('entryForm'));
+
+    fetch('sendDatabank.php', {
+        method: 'POST',
+        body: entryForm
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data == 'true') {
+            document.getElementById('owner').value = '';
+            document.getElementById('car').value = '';
+            document.getElementById('licensePlate').value = '';
+            document.getElementById('entryDate').value = '';
+            document.getElementById('exitDate').value = '';
+            alert('Ok')
+        } else {
+            console.log(data);
+        }
+    })
+})
+
 //Entry Class: Represent each entry in the parking lot
 class Entry{
     constructor(owner,car,licensePlate,entryDate,exitDate){

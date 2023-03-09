@@ -22,31 +22,31 @@
         </div>
     </header>
     <div class="form-container mt-5">
-        <form class="w-50 mx-auto" id="entryForm">
+        <form class="w-50 mx-auto" id="entryForm" method="POST">
             <h5 class="text-center">Add Car to Parking Lot</h5>
             <div class="form-group">
                 <label for="owner">Owner:</label>
-                <input type="text" class="form-control rounded-0 shadow-sm" id="owner" placeholder="Owner">
+                <input type="text" class="form-control rounded-0 shadow-sm" id="owner" name="owner" placeholder="Owner">
             </div>
             <div class="form-group">
                 <label for="car">Car:</label>
-                <input type="text" class="form-control rounded-0 shadow-sm" id="car" placeholder="Car">
+                <input type="text" class="form-control rounded-0 shadow-sm" id="car" name="car" placeholder="Car">
             </div>
             <div class="form-group">
                 <label for="licensePlate">License Plate:</label>
-                <input type="text" class="form-control rounded-0 shadow-sm" id="licensePlate" placeholder="NN-NN-LL,NN-LL-NN,....etc">
+                <input type="text" class="form-control rounded-0 shadow-sm" id="licensePlate" name="licensePlate" placeholder="NN-NN-LL,NN-LL-NN,....etc">
             </div>
             <div class="row">
                 <div class="col-6">
                     <label for="entryDate">Entry Date:</label>
-                    <input type="date" class="form-control rounded-0 shadow-sm" id="entryDate">
+                    <input type="date" class="form-control rounded-0 shadow-sm" id="entryDate" name="entryDate">
                 </div>
                 <div class="col-6">
                     <label for="exitDate">Exit Date:</label>
-                    <input type="date" class="form-control rounded-0 shadow-sm" id="exitDate">
+                    <input type="date" class="form-control rounded-0 shadow-sm" id="exitDate" name="exitDate">
                 </div>
             </div>
-            <button type="submit" style="color:#000;" class="btn mx-auto d-block mt-5 rounded-0 shadow" id="btnOne">Add Car</button>
+            <button type="submit" style="color:#000;" class="btn mx-auto d-block mt-5 rounded-0 shadow" id="btnOne" name="btnOnebtnOne">Add Car</button>
         </form>
     </div>
     <div class="table-container mt-5 mb-5 w-75 mx-auto" >
